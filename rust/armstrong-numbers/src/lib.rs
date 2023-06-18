@@ -9,7 +9,7 @@ pub fn is_armstrong_number(num: u32) -> bool {
         if let Some(digit) = digit {
             sum += u128::pow(digit.into(), digit_count as u32);
         } else {
-            break;
+            panic!("Could not convert {:?} to u32.", digit_char);
         }
     }
 
