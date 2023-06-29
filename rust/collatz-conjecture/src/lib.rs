@@ -16,16 +16,10 @@ pub fn collatz(n: u64) -> Option<u64> {
                 return None;
             }
         } else {
-            let product: Option<u64> = current.checked_mul(3);
+            let product: Option<u64> = current.checked_mul(3)?.checked_add(1);
 
             if product.is_some() {
-                let sum: Option<u64> = product.unwrap().checked_add(1);
-
-                if sum.is_some() {
-                    current = sum.unwrap();
-                } else {
-                    return None;
-                }
+                current = product.unwrap();
             } else {
                 return None;
             }
