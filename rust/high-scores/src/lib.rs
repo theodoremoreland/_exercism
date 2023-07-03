@@ -23,23 +23,13 @@ impl<'a> HighScores<'a> {
     }
 
     pub fn personal_top_three(&self) -> Vec<u32> {
-        let mut top_three: Vec<u32> = Vec::new();
         let mut copy: Vec<u32> = self
             .scores
-            .iter()
-            .map(|n| n.to_owned())
-            .collect();
+            .to_vec();
         
-        copy.sort_unstable();
+        copy.sort_unstable_by(|a, b| b.cmp(a)); 
+        copy.truncate(3);
 
-        for score in copy.iter().rev() {
-            top_three.push(score.to_owned());
-
-            if top_three.len() == 3 {
-                break;
-            }
-        }
-        
-        top_three
+        copy
     }
 }
